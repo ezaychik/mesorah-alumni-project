@@ -1,0 +1,79 @@
+<div class="mb10">
+  <form>
+    <div *ngIf="searchType==='name'">
+      <div class="form-row mb10">
+        <div class="col">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" class="form-control">
+        </div>
+        <div class="col">
+          <label for="lastNameAsStudent">Last Name (As Mesorah Student)</label>
+          <input type="text" id="lastNameAsStudent" class="form-control">
+        </div>
+        <div class="col">
+          <label for="lastNameMarried">Last Name (Married)</label>
+          <input type="text" id="lastNameMarried" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div *ngIf="searchType==='year'">
+      <div class="form-row mb10">
+        <div class="col-md-2">
+          <label for="yearGraduated">Year Graduated Mesorah</label>
+          <select name="" id="yearGraduated" class="form-control">
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="searchType==='location'">
+      <div class="form-row mb10">
+        <div class="col">
+          <label for="city">City</label>
+          <input type="text" id="city" class="form-control">
+        </div>
+        <div class="col">
+          <label for="state">State</label>
+          <select type="select" id="state" class="form-control" disabled></select>
+        </div>
+        <div class="col">
+          <label for="country">Country</label>
+          <input type="text" id="country" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div *ngIf="searchType==='occupation'">
+      <div class="form-row mb10">
+        <div class="col-md-6">
+          <label for="occupation"> Occupation </label>
+          <input type="text" name="" id="occupation" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="onSearch()">Search</button>
+    </div>
+  </form>
+</div>
+<div class="mb10">
+  <h2>Results:</h2>
+</div>

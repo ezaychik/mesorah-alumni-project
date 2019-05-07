@@ -1,0 +1,168 @@
+<form>
+  <div>
+    <h4>Name</h4>
+    <div class="form-row mb10">
+      <div class="col">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" class="form-control">
+      </div>
+      <div class="col">
+        <label for="lastNameAsStudent">Last Name (As Mesorah Student)</label>
+        <input type="text" id="lastNameAsStudent" class="form-control">
+      </div>
+    </div>
+    <div class="form-row mb10">
+      <div class="col-md-2">
+        <label for="yearGraduated">Year Graduated Mesorah</label>
+        <select name="" id="yearGraduated" class="form-control">
+          <option value="2000">2000</option>
+          <option value="2001">2001</option>
+          <option value="2002">2002</option>
+          <option value="2003">2003</option>
+          <option value="2004">2004</option>
+          <option value="2005">2005</option>
+          <option value="2006">2006</option>
+          <option value="2007">2007</option>
+          <option value="2008">2008</option>
+          <option value="2009">2009</option>
+          <option value="2010">2010</option>
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h4>Address</h4>
+    <div class="form-row mb10">
+      <div class="col">
+        <label for="address">Address</label>
+        <input type="text" id="address" class="form-control">
+      </div>
+    </div>
+    <div class="form-row mb10">
+      <div class="col">
+        <label for="city">City</label>
+        <input type="text" id="city" class="form-control">
+      </div>
+      <div class="col">
+        <label for="state">State</label>
+        <select type="select" id="state" class="form-control" disabled></select>
+      </div>
+      <div class="col">
+        <label for="country">Country</label>
+        <input type="text" id="country" class="form-control">
+      </div>
+      <div class="col">
+        <label for="postalCode">Postal Code</label>
+        <input type="number" id="postalCode" class="form-control">
+      </div>
+    </div>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <div class="form-row mb10">
+      <div class="col">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control">
+      </div>
+      <div class="col">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="tel" name="phone" id="phoneNumber" class="form-control">
+      </div>
+    </div>
+  </div>
+  <div>
+    <h4>Family</h4>
+    <div>
+      <h6>Married?</h6>
+      <div class="form-check form-check-inline mb10">
+        <input type="radio" name="maritalStatus" id="married" class="form-check-input">
+        <label for="married" class="form-check-label">Yes</label>
+      </div>
+      <div class="form-check form-check-inline mb10">
+        <input type="radio" name="maritalStatus" id="notMarried" class="form-check-input">
+        <label for="notMarried" class="form-check-label">No</label>
+      </div>
+      <div class="form-row mb10">
+        <div class="col">
+          <label for="husbandFirstName">Husband's First Name</label>
+          <input type="text" id="husbandFirstName" class="form-control">
+        </div>
+        <div class="col">
+          <label for="husbandLastName">Husband's Last Name</label>
+          <input type="text" id="husbandLastName" class="form-control">
+        </div>
+      </div>
+      <div class="form-row mb10">
+        <div class="col-md-6">
+          <label for="husbandOccupation">Husband's Occupation</label>
+          <input type="text" name="" id="husbandOccupation" class="form-control"></div>
+      </div>
+    </div>
+    <div>
+      <h6>Children?</h6>
+      <div class="form-check form-check-inline mb10">
+        <input type="radio" name="children" id="yesChildren" class="form-check-input">
+        <label for="yesChildren" class="form-check-label">Yes</label>
+      </div>
+      <div class="form-check form-check-inline mb10">
+        <input type="radio" name="children" id="noChildren" class="form-check-input">
+        <label for="noChildren" class="form-check-label">No</label>
+      </div>
+      <div>
+        <div class="form-row mb10">
+          <div class="col-md-6">
+            <label for="childName">Name</label>
+            <input type="text" id="childName" class="form-control"></div>
+        </div>
+        <div class="form-row mb10">
+          <div class="col">
+            <label for="childGender">Gender</label>
+            <select type="text" id="childGender" class="form-control">
+              <option value=""></option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="childBirthday">Birthday</label>
+            <input type="date" id="childBirthday" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="mb10">
+        <button type="button" class="btn btn-outline-secondary btn-sm">Add Child</button>
+      </div>
+    </div>
+  </div>
+  <div>
+      <div>
+          <h4>Professional</h4>
+          <div class="form-row mb10">
+            <div class="col-md-6">
+              <label for="occupation"> Occupation </label>
+              <input type="text" name="" id="occupation" class="form-control">
+            </div>
+          </div>
+          <div class="form-row mb10">
+            <div class="col-md-6">
+              <label for="company"> Company </label>
+              <input type="text" name="" id="company" class="form-control">
+            </div>
+          </div>
+        </div>
+  </div>
+  <div>
+    <div class="mb10">
+      <button type="button" class="btn btn-primary">Update</button>
+    </div>
+  </div>
+</form>

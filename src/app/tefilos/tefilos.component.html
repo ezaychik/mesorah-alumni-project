@@ -1,0 +1,47 @@
+<div class="mb10 flex-parent">
+  <div class="flex-child">
+    <h2>Active Requests for Tefilos </h2>
+  </div>
+  <div class="flex-child text-right">
+    <button type="button" class="btn btn-link" (click)="onChangeViewOfRequests()">View {{typeOfRequestsToViewOnClick}}
+      Requests</button>
+  </div>
+</div>
+<div class="mb10">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Date of Request</th>
+        <th scope="col">Name</th>
+        <th scope="col">Requester</th>
+        <th scope="col">Description</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of requestsForDisplay">
+        <td>{{request.dateOfRequest}}</td>
+        <td>{{request.name}}</td>
+        <td>{{request.requester}}</td>
+        <td>{{request.description}}</td>
+        <td>
+          <button
+            *ngIf="request.requester === currentAlumna.personalInfo.name + ' ' +currentAlumna.personalInfo.lastNameAsMesorahStudent"
+            (click)="onCancelRequest(request)" type="button" class="btn btn-warning btn-sm">Cancel Request</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="mb10">
+  <button (click)="onAddRequest()" type="button" class="btn btn-primary btn-lg">Add A Request</button>
+</div>
+<h4>Sign Up To Receive Tefila Requests!</h4>
+<p>You will receive an email when a new request for tefilos is made. You can change your preference here at any time.
+</p>
+<div class="form-check">
+  <input (click)="onChangeTefilaRequestPreference()" type="checkbox"
+    [checked]="currentAlumna.isSignedUpForTefilaRequests" name="receiveTefilaRequests" id="toggleTefilaSignup"
+    class="form-check-input">
+  <label for="toggleTefilaSignup" class="form-check-label">I want to sign up!</label>
+</div>

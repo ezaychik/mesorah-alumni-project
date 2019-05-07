@@ -1,0 +1,73 @@
+<div class="mb10">
+  <form>
+    <div class="form-row mb10">
+      <div class="col-md-6">
+        <label for="replyTo">Reply To</label>
+        <input type="text" ngModel="{{name}}" name="replyTo" id="replyTo" readonly class="form-control">
+      </div>
+    </div>
+    <div class="mb10">Recipients</div>
+    <div class="form-row mb10">
+      <div class="col-md-6 flex-parent">
+        <div>
+          <button class="btn btn-light dropdown-toggle" data-toggle="dropdown">Graduating Year</button>
+          <div class="dropdown-menu">
+            <div class="form-group">
+              <div *ngFor="let year of allGraduatingYears" class="form-check pl-4">
+                <input type="checkbox" (change)="onClickYear($event, year)" name="graduatingYear"
+                  class="form-check-input">
+                <label for="graduatingYear" class="form-check-label">{{year}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-light dropdown-toggle" data-toggle="dropdown">Location</button>
+          <div class="dropdown-menu">
+            <div class="form-group">
+              <div *ngFor="let location of allLocations" class="form-check pl-4">
+                <input type="checkbox" (change)="onClickLocation($event, location)" name="location"
+                  class="form-check-input">
+                <label for="location" class="form-check-label">{{location}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row mb10">
+      <div class="col">
+        <label for="subject">Subject</label>
+        <select type="text" name="subject" id="subject" class="form-control">
+          <option value=""></option>
+          <option value="alumniEvent">Alumni Event</option>
+          <option value="job">Job</option>
+          <option value="petira">Petira</option>
+          <option value="simcha">Simcha</option>
+          <option value="tefilos">Tefilos</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="subjectLine">Subject Line</label>
+        <input type="text" name="subjectLine" id="subjectLine" class="form-control">
+      </div>
+    </div>
+    <div class="form-row mb10">
+      <div class="col-md-6">
+        <label for="hebrewName">Name of Person Needing Tefilos</label>
+        <input type="text" ngModel name="nameForDavening" id="hebrewName"
+          placeholder="Please provide name and mother's name in Hebrew" class="form-control">
+      </div>
+    </div>
+    <div class="form-row mb10">
+      <div class="col">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="20" rows="5" class="form-control"></textarea>
+      </div>
+    </div>
+    <div class="mb10">
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </div>
+  </form>
+</div>
