@@ -1,34 +1,43 @@
 <div class="mb10">
-  <form>
+  <form [formGroup]="broadcastForm" (ngSubmit)="onSubmit()">
     <div class="form-row mb10">
       <div class="col-md-6">
         <label for="replyTo">Reply To</label>
-        <input type="text" ngModel="{{name}}" name="replyTo" id="replyTo" readonly class="form-control">
+        <input type="text" name="replyTo" id="replyTo" readonly class="form-control" formControlName="replyTo">
       </div>
     </div>
     <div class="mb10">Recipients</div>
+    <span *ngIf="broadcastForm.get('recipients')['controls'].byGraduatingYear.invalid 
+      && broadcastForm.get('recipients')['controls'].byLocation.invalid && recipientsTouched">Please
+      select at least one recipient group!</span>
     <div class="form-row mb10">
-      <div class="col-md-6 flex-parent">
+      <div class="col-md-6 flex-parent" formGroupName="recipients">
         <div>
-          <button class="btn btn-light dropdown-toggle" data-toggle="dropdown">Graduating Year</button>
+          <button class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+            (click)="onRecipientsTouched()">Graduating Year</button>
           <div class="dropdown-menu">
             <div class="form-group">
-              <div *ngFor="let year of allGraduatingYears" class="form-check pl-4">
-                <input type="checkbox" (change)="onClickYear($event, year)" name="graduatingYear"
+              <div
+                *ngFor="let year of broadcastForm.get('recipients')['controls'].byGraduatingYear.controls; let i = index"
+                class="form-check pl-4" formArrayName="byGraduatingYear">
+                <input type="checkbox" [formControlName]="i" (change)="onClickYear($event, year)" name="graduatingYear"
                   class="form-check-input">
-                <label for="graduatingYear" class="form-check-label">{{year}}</label>
+                <label for="graduatingYear" class="form-check-label">{{allGraduatingYears[i]}} </label>
               </div>
             </div>
           </div>
         </div>
         <div>
-          <button class="btn btn-light dropdown-toggle" data-toggle="dropdown">Location</button>
+          <button class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+            (click)="onRecipientsTouched()">Location</button>
           <div class="dropdown-menu">
             <div class="form-group">
-              <div *ngFor="let location of allLocations" class="form-check pl-4">
-                <input type="checkbox" (change)="onClickLocation($event, location)" name="location"
-                  class="form-check-input">
-                <label for="location" class="form-check-label">{{location}}</label>
+              <div
+                *ngFor="let location of broadcastForm.get('recipients')['controls'].byLocation.controls; let i = index"
+                class="form-check pl-4" formArrayName="byLocation">
+                <input type="checkbox" [formControlName]="i" (change)="onClickLocation($event, location)"
+                  name="location" class="form-check-input">
+                <label for="location" class="form-check-label">{{allLocations[i]}}</label>
               </div>
             </div>
           </div>
@@ -38,7 +47,7 @@
     <div class="form-row mb10">
       <div class="col">
         <label for="subject">Subject</label>
-        <select type="text" name="subject" id="subject" class="form-control">
+        <select type="text" name="subject" id="subject" class="form-control" formControlName="subject">
           <option value=""></option>
           <option value="alumniEvent">Alumni Event</option>
           <option value="job">Job</option>
@@ -47,23 +56,37 @@
           <option value="tefilos">Tefilos</option>
           <option value="other">Other</option>
         </select>
+        <span *ngIf="broadcastForm.get('subject').invalid && broadcastForm.get('subject').touched">Please make a
+          selection!</span>
       </div>
       <div class="col">
         <label for="subjectLine">Subject Line</label>
-        <input type="text" name="subjectLine" id="subjectLine" class="form-control">
+        <input type="text" name="subjectLine" id="subjectLine" class="form-control" formControlName="subjectLine">
       </div>
     </div>
-    <div class="form-row mb10">
+    <div *ngIf="broadcastForm.get('subject').value === 'tefilos'" class="form-row mb10">
       <div class="col-md-6">
-        <label for="hebrewName">Name of Person Needing Tefilos</label>
-        <input type="text" ngModel name="nameForDavening" id="hebrewName"
-          placeholder="Please provide name and mother's name in Hebrew" class="form-control">
+        <label for="nameForDavening">Name of Person Needing Tefilos</label>
+        <input type="text" name="nameForDavening" id="hebrewName"
+          placeholder="Please provide name and mother's name in Hebrew" class="form-control"
+          formControlName="nameForDavening">
+        <span *ngIf="broadcastForm.get('nameForDavening').invalid && broadcastForm.get('nameForDavening').touched">
+          Please enter a name!</span>
       </div>
     </div>
     <div class="form-row mb10">
       <div class="col">
         <label for="description">Description</label>
-        <textarea name="description" id="description" cols="20" rows="5" class="form-control"></textarea>
+        <textarea name="description" id="description" cols="20" rows="5" class="form-control"
+          formControlName="description"></textarea>
+        <span *ngIf="broadcastForm.get('description').invalid 
+          && broadcastForm.get('description').touched 
+          && broadcastForm.get('description').getError('required')">
+          Please enter a description!</span>
+        <span *ngIf="broadcastForm.get('description').invalid 
+        && broadcastForm.get('description').touched 
+        && broadcastForm.get('description').getError('maxlength')">
+          Description cannot exceed 200 characters!</span>
       </div>
     </div>
     <div class="mb10">
