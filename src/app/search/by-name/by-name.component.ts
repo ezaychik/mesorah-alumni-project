@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./by-name.component.less']
 })
 export class ByNameComponent implements OnInit {
-
+  firstName: string;
+  lastNameStudent: string;
+  lastNameMarried: string;
   constructor() { }
 
   ngOnInit() {
   }
+  onSearch() {
 
+  }
 }

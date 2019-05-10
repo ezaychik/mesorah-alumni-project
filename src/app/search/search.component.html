@@ -1,14 +1,13 @@
 <div class="mb10">
-  <form>
-    <router-outlet></router-outlet>
-    <div>
-      <button type="button" class="btn btn-primary" (click)="onSearch()">Search</button>
-    </div>
-  </form>
+  <router-outlet></router-outlet>
 </div>
 <div class="mb10">
   <h2>Results:</h2>
-  <div>
-    
-  </div>
+  <ul class="nav flex-column">
+    <li *ngFor="let alumna of seatchResults">
+      <a routerLink="/profile" class="nav-link inline-block" style="display:inline-block">
+        {{alumna.personalInfo.lastNameAsMesorahStudent}}, {{alumna.personalInfo.name}}
+      </a>
+    </li>
+  </ul>
 </div>

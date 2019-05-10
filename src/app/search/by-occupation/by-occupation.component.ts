@@ -11,5 +11,7 @@ export class ByOccupationComponent implements OnInit {
 
   ngOnInit() {
   }
+  onSearch() {
 
+  }
 }
