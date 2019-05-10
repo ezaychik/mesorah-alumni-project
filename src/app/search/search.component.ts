@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Alumna } from '../models/alumna/alumna';
 
 @Component({
   selector: 'app-search',
@@ -7,15 +8,11 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./search.component.less']
 })
 export class SearchComponent implements OnInit {
-  searchType: string;
+  seatchResults: Alumna[];
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.searchType = params.type;
-      }
-    );
+
   }
   onSearch() {
     // call some method

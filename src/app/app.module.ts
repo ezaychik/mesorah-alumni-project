@@ -10,6 +10,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
 import { BroadcastComponent } from './broadcast/broadcast.component';
 import { TefilosComponent } from './tefilos/tefilos.component';
+import { ByNameComponent } from './search/by-name/by-name.component';
+import { ByYearComponent } from './search/by-year/by-year.component';
+import { ByLocationComponent } from './search/by-location/by-location.component';
+import { ByOccupationComponent } from './search/by-occupation/by-occupation.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { TefilosComponent } from './tefilos/tefilos.component';
     ProfileComponent,
     SearchComponent,
     BroadcastComponent,
-    TefilosComponent
+    TefilosComponent,
+    ByNameComponent,
+    ByYearComponent,
+    ByLocationComponent,
+    ByOccupationComponent
   ],
   imports: [
     BrowserModule,
