@@ -6,15 +6,16 @@
         <input type="text" name="replyTo" id="replyTo" readonly class="form-control" formControlName="replyTo">
       </div>
     </div>
-    <div class="mb10">Recipients</div>
-    <span *ngIf="broadcastForm.get('recipients')['controls'].byGraduatingYear.invalid 
-      && broadcastForm.get('recipients')['controls'].byLocation.invalid && recipientsTouched">Please
+    <div class="mb10">Recipients
+      <!-- <span class="small"> (Please select at least one group) </span> -->
+    </div>
+    <span *ngIf="onlyRecipientsInvalid()">Please
       select at least one recipient group!</span>
     <div class="form-row mb10">
       <div class="col-md-6 flex-parent" formGroupName="recipients">
         <div>
-          <button class="btn btn-light dropdown-toggle" data-toggle="dropdown"
-            (click)="onRecipientsTouched()">Graduating Year</button>
+          <button class="btn btn-light dropdown-toggle" [ngClass]="{'invalid-message': onlyRecipientsInvalid()}"
+            data-toggle="dropdown">Graduating Year</button>
           <div class="dropdown-menu">
             <div class="form-group">
               <div
@@ -28,8 +29,8 @@
           </div>
         </div>
         <div>
-          <button class="btn btn-light dropdown-toggle" data-toggle="dropdown"
-            (click)="onRecipientsTouched()">Location</button>
+          <button class="btn btn-light dropdown-toggle" [ngClass]="{'invalid-message': onlyRecipientsInvalid()}"
+            data-toggle="dropdown">Location</button>
           <div class="dropdown-menu">
             <div class="form-group">
               <div
@@ -90,7 +91,7 @@
       </div>
     </div>
     <div class="mb10">
-      <button type="submit" class="btn btn-primary">Send Message</button>
+      <button type="submit" class="btn btn-primary" [disabled]="broadcastForm.invalid">Send Message</button>
     </div>
   </form>
 </div>

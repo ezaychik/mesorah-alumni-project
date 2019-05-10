@@ -15,14 +15,17 @@ export class BroadcastComponent implements OnInit {
   byYearFormControls = this.allGraduatingYears.map(control => new FormControl(false));
   byLocationFormControls = this.allLocations.map(control => new FormControl(false));
   broadcastForm: FormGroup;
-  recipientsTouched = false;
-  constructor(private formBuilder: FormBuilder) {
-
-  }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.initForm();
+    if (history.state.from && history.state.from === 'tefilos') {
+      this.presetTefilaRequest();
+    }
 
+  }
+  presetTefilaRequest() {
+    this.broadcastForm.get('subject').setValue('tefilos');
   }
   initForm() {
     this.broadcastForm = this.formBuilder.group({
@@ -42,7 +45,7 @@ export class BroadcastComponent implements OnInit {
     const validator: ValidatorFn = (formArray: FormArray) => {
       const totalSelected = formArray.controls.map(control => control.value).filter(value => value === true);
       return totalSelected.length > 0 ? null : { required: true };
-    }
+    };
     return validator;
   }
 
@@ -76,9 +79,9 @@ export class BroadcastComponent implements OnInit {
     event.target.checked ? this.selectedLocations.push(location) :
       this.selectedLocations.splice(this.selectedLocations.indexOf(location), 1);
   }
-  onRecipientsTouched() {
-    if (!this.recipientsTouched) {
-      this.recipientsTouched = true;
-    }
+  onlyRecipientsInvalid(): boolean {
+    return this.broadcastForm.touched && this.broadcastForm.invalid &&
+      (this.broadcastForm.get('subject').valid && this.broadcastForm.get('subjectLine').valid
+        && this.broadcastForm.get('description').valid && this.broadcastForm.get('nameForDavening').valid);
   }
 }
