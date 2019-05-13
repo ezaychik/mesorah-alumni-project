@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Alumna } from '../models/alumna/alumna';
-import { PersonalInfo } from '../models/alumna/personalDetails/personalInfo';
+import { Alumna } from 'src/app/models/alumna/alumna';
+import { PersonalInfo } from 'src/app/models/alumna/personalDetails/personalInfo';
+
 
 @Component({
   selector: 'app-search',

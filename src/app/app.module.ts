@@ -7,21 +7,21 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { SearchComponent } from './search/search.component';
 import { BroadcastComponent } from './components/broadcast/broadcast.component';
 import { TefilosComponent } from './components/tefilos/tefilos.component';
-import { ByNameComponent } from './search/by-name/by-name.component';
-import { ByYearComponent } from './search/by-year/by-year.component';
-import { ByLocationComponent } from './search/by-location/by-location.component';
-import { ByOccupationComponent } from './search/by-occupation/by-occupation.component';
+import { ByNameComponent } from './components/search/by-name/by-name.component';
+import { ByYearComponent } from './components/search/by-year/by-year.component';
+import { ByLocationComponent } from './components/search/by-location/by-location.component';
+import { ByOccupationComponent } from './components/search/by-occupation/by-occupation.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    ProfileComponent,
     SearchComponent,
+    ProfileComponent,
     BroadcastComponent,
     TefilosComponent,
     ByNameComponent,
