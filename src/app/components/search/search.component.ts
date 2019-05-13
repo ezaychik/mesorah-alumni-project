@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-import { Alumna } from 'src/app/models/alumna/alumna';
-import { PersonalInfo } from 'src/app/models/alumna/personalDetails/personalInfo';
+import { SearchResult } from 'src/app/models/search.model';
+import { SearchService } from 'src/app/services/search.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,21 +11,22 @@ import { PersonalInfo } from 'src/app/models/alumna/personalDetails/personalInfo
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.less']
 })
-export class SearchComponent implements OnInit {
-  alumna1: Alumna = new Alumna();
-  alumna2: Alumna = new Alumna();
-  alumna3: Alumna = new Alumna();
+export class SearchComponent implements OnInit, OnDestroy {
+  searchPerformedSubscription: Subscription;
+  searchResults: SearchResult[] = [];
+  constructor(private searchService: SearchService, private router: Router) { }
 
-  searchResults: Alumna[] = [];
-  constructor() { }
-
+  ngOnDestroy(): void {
+    this.searchPerformedSubscription.unsubscribe();
+  }
   ngOnInit() {
-    const personalInfo: PersonalInfo = new PersonalInfo();
-    personalInfo.name = 'Margaret';
-    personalInfo.lastNameAsMesorahStudent = 'Thatcher';
-    this.alumna1.personalInfo = personalInfo;
-    this.alumna2.personalInfo = personalInfo;
-    this.alumna3.personalInfo = personalInfo;
-    this.searchResults.push(this.alumna1, this.alumna2, this.alumna3);
+    this.searchPerformedSubscription = this.searchService.searchPerformed.subscribe(
+      (searchResults: SearchResult[]) => {
+        this.searchResults = searchResults;
+      }
+    );
+    this.router.events.subscribe(() => {
+      this.searchResults = [];
+    });
   }
 }

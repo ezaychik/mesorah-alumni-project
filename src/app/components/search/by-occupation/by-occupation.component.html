@@ -1,11 +1,11 @@
 <form #searchForm="ngForm" (ngSubmit)="onSearch()">
   <div class="form-group mb10">
-    <div class="col">
-      <label for="occupation"> Occupation </label>
-      <input type="text" name="occupation" #occupation="ngModel" [(ngModel)]="searchTerms.terms.occupation"
-        id="occupation" class="form-control" required>
-      <span *ngIf="occupation.invalid && occupation.touched">Please enter an occupation!</span>
-    </div>
+
+    <label for="occupation"> Occupation </label>
+    <input type="text" name="occupation" #occupation="ngModel" [(ngModel)]="searchTerms.terms.occupation"
+      id="occupation" class="form-control" required>
+    <span *ngIf="occupation.invalid && occupation.touched">Please enter an occupation!</span>
+
   </div>
   <div>
     <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">Search</button>

@@ -12,3 +12,7 @@ export class Search {
         this.terms = terms;
     }
 }
+export class SearchResult {
+    public firstName: string;
+    public lastName: string;
+}

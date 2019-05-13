@@ -1,13 +1,14 @@
 <form #searchForm="ngForm" (ngSubmit)="onSearch()">
   <div class="form-group mb10">
-    <div class="col">
+    <div>
       <label for="city">City</label>
       <input type="text" name="city" #city="ngModel" class="form-control" [(ngModel)]="searchTerms.terms.city" required>
       <span *ngIf="city.invalid && city.touched">Please enter a city!</span>
     </div>
-    <div class="col">
+    <div>
       <label for="state">State</label>
-      <select type="select" name="state" class="form-control" [(ngModel)]="searchTerms.terms.state"[disabled]="searchTerms.terms.country!=='United States'">
+      <select type="select" name="state" class="form-control" [(ngModel)]="searchTerms.terms.state"
+        [disabled]="searchTerms.terms.country!=='United States'">
         <option value=""></option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
@@ -62,7 +63,7 @@
         <option value="WY">Wyoming</option>
       </select>
     </div>
-    <div class="col">
+    <div>
       <label for="country">Country</label>
       <input type="text" name="country" #country="ngModel" class="form-control" [(ngModel)]="searchTerms.terms.country"
         required>
