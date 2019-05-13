@@ -13,7 +13,7 @@ export class SearchComponent implements OnInit {
   alumna2: Alumna = new Alumna();
   alumna3: Alumna = new Alumna();
 
-  seatchResults: Alumna[] = [];
+  searchResults: Alumna[] = [];
   constructor() { }
 
   ngOnInit() {
@@ -23,6 +23,6 @@ export class SearchComponent implements OnInit {
     this.alumna1.personalInfo = personalInfo;
     this.alumna2.personalInfo = personalInfo;
     this.alumna3.personalInfo = personalInfo;
-    this.seatchResults.push(this.alumna1, this.alumna2, this.alumna3);
+    this.searchResults.push(this.alumna1, this.alumna2, this.alumna3);
   }
 }

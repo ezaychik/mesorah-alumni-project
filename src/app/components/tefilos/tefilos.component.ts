@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TefilaRequest } from '../models/tefilaRequest';
-import { Alumna } from '../models/alumna/alumna';
-import { PersonalInfo } from '../models/alumna/personalDetails/personalInfo';
+import { TefilaRequest } from '../../models/tefilaRequest';
+import { Alumna } from '../../models/alumna/alumna';
+import { PersonalInfo } from '../../models/alumna/personalDetails/personalInfo';
 
 @Component({
   selector: 'app-tefilos',

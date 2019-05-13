@@ -4,12 +4,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { SearchComponent } from './search/search.component';
-import { BroadcastComponent } from './broadcast/broadcast.component';
-import { TefilosComponent } from './tefilos/tefilos.component';
+import { BroadcastComponent } from './components/broadcast/broadcast.component';
+import { TefilosComponent } from './components/tefilos/tefilos.component';
 import { ByNameComponent } from './search/by-name/by-name.component';
 import { ByYearComponent } from './search/by-year/by-year.component';
 import { ByLocationComponent } from './search/by-location/by-location.component';

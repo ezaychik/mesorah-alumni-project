@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Search, SearchTerms } from 'src/app/models/search';
 
 @Component({
   selector: 'app-by-name',
@@ -6,14 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./by-name.component.less']
 })
 export class ByNameComponent implements OnInit {
-  firstName: string;
-  lastNameStudent: string;
-  lastNameMarried: string;
-  constructor() { }
+  searchTerms: Search = new Search(SearchTerms.Name, { firstName: '', lastName: '' });
+  constructor() {
+  }
 
   ngOnInit() {
   }
   onSearch() {
-
+    console.log(this.searchTerms);
   }
 }

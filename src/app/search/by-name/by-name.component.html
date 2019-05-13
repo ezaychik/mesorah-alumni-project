@@ -1,19 +1,18 @@
-<form>
-  <div class="form-row mb10">
+<form #searchForm="ngForm" (ngSubmit)="onSearch()">
+  <div class="form-group mb10">
     <div class="col">
       <label for="firstName">First Name</label>
-      <input type="text" id="firstName" class="form-control">
+      <input type="text" name="firstName" id="firstName" [(ngModel)]="searchTerms.terms.firstName" class="form-control">
     </div>
     <div class="col">
-      <label for="lastNameAsStudent">Last Name (As Mesorah Student)</label>
-      <input type="text" id="lastNameAsStudent" class="form-control">
+      <label for="lastName">Last Name (as Mesorah Student or Married)</label>
+      <input type="text" name="lastName" id="lastName" #lastName="ngModel" [(ngModel)]="searchTerms.terms.lastName"
+        class="form-control" required>
+      <span *ngIf="lastName.invalid && lastName.touched">Please enter a last name!</span>
     </div>
-    <div class="col">
-      <label for="lastNameMarried">Last Name (Married)</label>
-      <input type="text" id="lastNameMarried" class="form-control">
-    </div>
+
   </div>
   <div>
-    <button type="button" class="btn btn-primary" (click)="onSearch()">Search</button>
+    <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">Search</button>
   </div>
 </form>
