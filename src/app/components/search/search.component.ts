@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
-import { SearchResult } from 'src/app/models/search.model';
+import { SearchResult, Search } from 'src/app/models/search.model';
 import { SearchService } from 'src/app/services/search.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -11,22 +11,36 @@ import { Router } from '@angular/router';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.less']
 })
-export class SearchComponent implements OnInit, OnDestroy {
-  searchPerformedSubscription: Subscription;
+export class SearchComponent implements OnInit {
+
   searchResults: SearchResult[] = [];
+  searchTerms: Search;
+  searchForm: NgForm;
+  noResultsReturned = false;
   constructor(private searchService: SearchService, private router: Router) { }
 
-  ngOnDestroy(): void {
-    this.searchPerformedSubscription.unsubscribe();
-  }
   ngOnInit() {
-    this.searchPerformedSubscription = this.searchService.searchPerformed.subscribe(
-      (searchResults: SearchResult[]) => {
-        this.searchResults = searchResults;
-      }
-    );
+    this.clearSearchResultsWhenNavigatingAway();
+  }
+  clearSearchResultsWhenNavigatingAway() {
     this.router.events.subscribe(() => {
       this.searchResults = [];
+      this.noResultsReturned = false;
     });
+  }
+  getSearchTerms(componentReference) {
+    this.searchTerms = componentReference.searchTerms;
+    this.searchForm = componentReference.searchForm;
+  }
+
+  async onSearch() {
+    try {
+      this.searchResults = await this.searchService.getAlumni(this.searchTerms) as SearchResult[];
+      if (this.searchResults.length < 1) {
+        this.noResultsReturned = true;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

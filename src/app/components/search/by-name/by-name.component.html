@@ -1,4 +1,4 @@
-<form #searchForm="ngForm" (ngSubmit)="onSearch()">
+<form #searchForm="ngForm">
   <div class="form-group mb10">
     <div>
       <label for="firstName">First Name</label>
@@ -10,9 +10,5 @@
         class="form-control" required>
       <span *ngIf="lastName.invalid && lastName.touched">Please enter a last name!</span>
     </div>
-
-  </div>
-  <div>
-    <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">Search</button>
   </div>
 </form>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { SearchTerms, Search } from 'src/app/models/search.model';
-import { SearchService } from 'src/app/services/search.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { SearchType, Search } from 'src/app/models/search.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-by-occupation',
@@ -8,12 +8,10 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./by-occupation.component.less']
 })
 export class ByOccupationComponent implements OnInit {
-  searchTerms: Search = new Search(SearchTerms.Occupation, { occupation: '' });
-  constructor(private searchService: SearchService) { }
+  searchTerms: Search = new Search(SearchType.Occupation, { occupation: '' });
+  @ViewChild('searchForm') searchForm: NgForm;
+  constructor() { }
 
   ngOnInit() {
-  }
-  onSearch() {
-    this.searchService.getAlumni(this.searchTerms);
   }
 }

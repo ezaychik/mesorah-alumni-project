@@ -1,13 +1,13 @@
-export enum SearchTerms {
+export enum SearchType {
     Name = 'NAME',
     YearGraduated = 'YEAR',
     Location = 'LOCATION',
     Occupation = 'OCCUPATION'
 }
 export class Search {
-    type: SearchTerms;
+    type: SearchType;
     public terms: any;
-    constructor(type: SearchTerms, terms: any) {
+    constructor(type: SearchType, terms: any) {
         this.type = type;
         this.terms = terms;
     }

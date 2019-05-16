@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Search, SearchTerms } from 'src/app/models/search.model';
-import { SearchService } from 'src/app/services/search.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Search, SearchType } from 'src/app/models/search.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-by-location',
@@ -8,12 +8,11 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./by-location.component.less']
 })
 export class ByLocationComponent implements OnInit {
-  searchTerms: Search = new Search(SearchTerms.Location, { city: '', state: '', country: '' });
-  constructor(private searchService: SearchService) { }
+  searchTerms: Search = new Search(SearchType.Location, { city: '', state: '', country: '' });
+  @ViewChild('searchForm') searchForm: NgForm;
+  constructor() { }
 
   ngOnInit() {
   }
-  onSearch() {
-    this.searchService.getAlumni(this.searchTerms);
-  }
+
 }

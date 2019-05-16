@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { SearchResult, Search } from '../models/search.model';
-import { Observable, Subject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SearchService {
-  public searchPerformed: Subject<SearchResult[]> = new Subject<SearchResult[]>();
   constructor() { }
 
   getAlumni(searchTerms: Search) {
@@ -24,8 +20,8 @@ export class SearchService {
     alumna3.firstName = 'Marie';
 
     const searchResults: SearchResult[] = [];
-    searchResults.push(alumna1, alumna2, alumna3);
-    this.searchPerformed.next(searchResults);
+    //searchResults.push(alumna1, alumna2, alumna3);
+    return searchResults;
 
   }
 }

@@ -1,5 +1,8 @@
 <div class="mb10">
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="getSearchTerms($event)"></router-outlet>
+  <div>
+    <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid" (click)="onSearch()">Search</button>
+  </div>
 </div>
 <div class="mb10">
   <h2>Results:</h2>
@@ -10,4 +13,7 @@
       </a>
     </li>
   </ul>
+  <div *ngIf="noResultsReturned">
+    <p>Sorry, no results were found. Please check the search terms, and try again.</p>
+  </div>
 </div>

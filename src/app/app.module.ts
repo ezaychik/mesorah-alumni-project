@@ -14,6 +14,7 @@ import { ByYearComponent } from './components/search/by-year/by-year.component';
 import { ByLocationComponent } from './components/search/by-location/by-location.component';
 import { ByOccupationComponent } from './components/search/by-occupation/by-occupation.component';
 import { SearchComponent } from './components/search/search.component';
+import { SearchService } from './services/search.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { SearchComponent } from './components/search/search.component';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

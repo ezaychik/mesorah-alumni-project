@@ -1,10 +1,10 @@
-<form #searchForm="ngForm" (ngSubmit)="onSearch()">
+<form #searchForm="ngForm">
   <div class="form-group mb10">
     <label for="yearGraduated">Year Graduated Mesorah</label>
     <select name="yearGraduated" id="yearGraduated" #yearGraduated="ngModel"
       [(ngModel)]="searchTerms.terms.yearGraduated" class="form-control"
-      [ngClass]="{'invalid-message': yearGraduated.value === 0 && yearGraduated.touched}" required>
-      <option value="0"></option>
+      [ngClass]="{'invalid-message': yearGraduated.touched &&  !yearGraduated.value}" required>
+      <option></option>
       <option value="2000">2000</option>
       <option value="2001">2001</option>
       <option value="2002">2002</option>
@@ -26,9 +26,6 @@
       <option value="2018">2018</option>
       <option value="2019">2019</option>
     </select>
-    <span *ngIf="yearGraduated.touched && yearGraduated.value === 0">Please select a year!</span>
-  </div>
-  <div>
-    <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">Search</button>
+    <span *ngIf="yearGraduated.touched && !yearGraduated.value">Please select a year!</span>
   </div>
 </form>
