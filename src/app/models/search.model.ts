@@ -13,6 +13,7 @@ export class Search {
     }
 }
 export class SearchResult {
+    public id: number;
     public firstName: string;
     public lastName: string;
 }

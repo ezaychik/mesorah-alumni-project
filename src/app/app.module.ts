@@ -15,6 +15,7 @@ import { ByLocationComponent } from './components/search/by-location/by-location
 import { ByOccupationComponent } from './components/search/by-occupation/by-occupation.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchService } from './services/search.service';
+import { PhoneNumberPipe } from './pipes/phone-number.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SearchService } from './services/search.service';
     ByNameComponent,
     ByYearComponent,
     ByLocationComponent,
-    ByOccupationComponent
+    ByOccupationComponent,
+    PhoneNumberPipe
   ],
   imports: [
     BrowserModule,

@@ -12,15 +12,18 @@ export class SearchService {
     const alumna3: SearchResult = new SearchResult();
     alumna1.firstName = 'Mother';
     alumna1.lastName = 'Theresa';
+    alumna1.id = 1;
 
     alumna2.firstName = 'Margaret';
     alumna2.lastName = 'Thatcher';
+    alumna1.id = 2;
 
     alumna3.lastName = 'Currie';
     alumna3.firstName = 'Marie';
+    alumna1.id = 3;
 
     const searchResults: SearchResult[] = [];
-    //searchResults.push(alumna1, alumna2, alumna3);
+    searchResults.push(alumna1, alumna2, alumna3);
     return searchResults;
 
   }

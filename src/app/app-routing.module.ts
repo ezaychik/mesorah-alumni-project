@@ -14,6 +14,7 @@ import { ByOccupationComponent } from './components/search/by-occupation/by-occu
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   {
     path: 'search', component: SearchComponent, children: [
       { path: 'name', component: ByNameComponent },
