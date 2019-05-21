@@ -10,6 +10,7 @@ import { ByNameComponent } from './components/search/by-name/by-name.component';
 import { ByYearComponent } from './components/search/by-year/by-year.component';
 import { ByLocationComponent } from './components/search/by-location/by-location.component';
 import { ByOccupationComponent } from './components/search/by-occupation/by-occupation.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +24,7 @@ const routes: Routes = [
       { path: 'occupation', component: ByOccupationComponent },
     ]
   },
-
+  { path: 'register', component: RegisterComponent },
   { path: 'broadcast', component: BroadcastComponent },
   { path: 'tefilos', component: TefilosComponent },
   { path: '**', component: HomeComponent }

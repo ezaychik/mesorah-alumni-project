@@ -16,6 +16,9 @@ import { ByOccupationComponent } from './components/search/by-occupation/by-occu
 import { SearchComponent } from './components/search/search.component';
 import { SearchService } from './services/search.service';
 import { PhoneNumberPipe } from './pipes/phone-number.pipe';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { PhoneNumberPipe } from './pipes/phone-number.pipe';
     ByYearComponent,
     ByLocationComponent,
     ByOccupationComponent,
-    PhoneNumberPipe
+    PhoneNumberPipe,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,7 @@ import { PhoneNumberPipe } from './pipes/phone-number.pipe';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [SearchService],
+  providers: [SearchService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

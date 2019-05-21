@@ -8,6 +8,7 @@ import { ProfessionalInfo } from './personalDetails/professionalInfo';
 
 export class Alumna {
   id: number;
+  loginName: string;
   personalInfo: PersonalInfo;
   address: Address;
   contact: ContactInfo;
