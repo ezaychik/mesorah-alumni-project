@@ -14,6 +14,9 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    if (this.authService.isAuthenticated) {
+      this.router.navigate(['home']);
+    }
   }
   onSignIn(form: NgForm) {
     const email = form.value.email;

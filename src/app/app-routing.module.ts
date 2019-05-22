@@ -11,23 +11,26 @@ import { ByYearComponent } from './components/search/by-year/by-year.component';
 import { ByLocationComponent } from './components/search/by-location/by-location.component';
 import { ByOccupationComponent } from './components/search/by-occupation/by-occupation.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: '', component: LoginComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'profile/:id', component: ProfileComponent },
   {
-    path: 'search', component: SearchComponent, children: [
-      { path: 'name', component: ByNameComponent },
-      { path: 'year', component: ByYearComponent },
-      { path: 'location', component: ByLocationComponent },
-      { path: 'occupation', component: ByOccupationComponent },
+    path: 'search', component: SearchComponent, canActivate: [AuthGuardService], children: [
+      { path: 'name', component: ByNameComponent  },
+      { path: 'year', component: ByYearComponent},
+      { path: 'location', component: ByLocationComponent},
+      { path: 'occupation', component: ByOccupationComponent},
     ]
   },
   { path: 'register', component: RegisterComponent },
-  { path: 'broadcast', component: BroadcastComponent },
-  { path: 'tefilos', component: TefilosComponent },
-  { path: '**', component: HomeComponent }
+  { path: 'broadcast', component: BroadcastComponent, canActivate: [AuthGuardService] },
+  { path: 'tefilos', component: TefilosComponent, canActivate: [AuthGuardService] },
+  { path: '**', component: LoginComponent }
 ];
 
 @NgModule({

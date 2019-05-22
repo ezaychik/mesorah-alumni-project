@@ -8,9 +8,12 @@
       <label for="password">Password</label>
       <input type="password" name="password" id="password" ngModel class="form-control">
     </div>
-    <button class="btn btn-primary" [disabled]="f.invalid" type="submit">Register</button>
+    <div class="mb10">
+      <button class="btn btn-primary" [disabled]="f.invalid" type="submit">Register</button>
+    </div>
   </form>
+  <div>{{alreadyRegisteredMessage}}</div>
 </div>
 <div class="width25pc">
-  <a routerLink="/home" class="nav-link">Already Registered? Sign in Here!</a>
+  <a routerLink="/login" class="nav-link">Already Registered? Sign in Here!</a>
 </div>

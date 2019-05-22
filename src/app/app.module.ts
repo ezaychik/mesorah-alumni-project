@@ -19,6 +19,7 @@ import { PhoneNumberPipe } from './pipes/phone-number.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { AuthService } from './services/auth.service';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [SearchService, AuthService],
+  providers: [SearchService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
