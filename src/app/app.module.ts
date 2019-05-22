@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { ModalModule } from 'ngx-modialog';
+import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ModalService } from './services/modal.service';
 
 @NgModule({
   declarations: [
@@ -42,9 +45,11 @@ import { AuthGuardService } from './services/auth-guard.service';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule
   ],
-  providers: [SearchService, AuthService, AuthGuardService],
+  providers: [SearchService, AuthService, AuthGuardService, ModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
-
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
@@ -15,4 +14,5 @@ export class HeaderComponent implements OnInit {
   onLogout() {
     this.authService.logout();
   }
+
 }
