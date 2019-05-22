@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-  isAuthenticated = false;
+  isAuthenticated = true;
   constructor(private router: Router) { }
 
   register(email: string, password: string) {

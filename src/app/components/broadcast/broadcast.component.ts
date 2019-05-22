@@ -25,7 +25,7 @@ export class BroadcastComponent implements OnInit {
 
   }
   presetTefilaRequest() {
-    this.broadcastForm.get('subject').setValue('tefilos');
+    this.broadcastForm.get('topic').setValue('tefilos');
   }
   initForm() {
     this.broadcastForm = this.formBuilder.group({
@@ -34,7 +34,7 @@ export class BroadcastComponent implements OnInit {
         byGraduatingYear: this.formBuilder.array(this.byYearFormControls, this.minSelectedValidator()),
         byLocation: this.formBuilder.array(this.byLocationFormControls, this.minSelectedValidator()),
       }),
-      subject: this.formBuilder.control(null, Validators.required),
+      topic: this.formBuilder.control(null, Validators.required),
       subjectLine: this.formBuilder.control(null, Validators.required),
       nameForDavening: this.formBuilder.control(null),
       description: this.formBuilder.control(null, [Validators.required, Validators.maxLength(200)])
@@ -51,7 +51,7 @@ export class BroadcastComponent implements OnInit {
 
   activateNameForDaveningValidation() {
     const nameForDaveningForm = this.broadcastForm.get('nameForDavening');
-    this.broadcastForm.get('subject').valueChanges.subscribe(
+    this.broadcastForm.get('topic').valueChanges.subscribe(
       (subject) => {
         (subject === 'tefilos') ? nameForDaveningForm.setValidators(Validators.required) : nameForDaveningForm.setValidators(null);
         nameForDaveningForm.updateValueAndValidity();
@@ -81,7 +81,7 @@ export class BroadcastComponent implements OnInit {
   }
   onlyRecipientsInvalid(): boolean {
     return this.broadcastForm.touched && this.broadcastForm.invalid &&
-      (this.broadcastForm.get('subject').valid && this.broadcastForm.get('subjectLine').valid
+      (this.broadcastForm.get('topic').valid && this.broadcastForm.get('subjectLine').valid
         && this.broadcastForm.get('description').valid && this.broadcastForm.get('nameForDavening').valid);
   }
 }

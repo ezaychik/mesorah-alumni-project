@@ -46,8 +46,8 @@
     </div>
     <div class="form-row mb10">
       <div class="col">
-        <label for="subject">Subject</label>
-        <select type="text" name="subject" id="subject" class="form-control" formControlName="subject">
+        <label for="topic">Topic</label>
+        <select type="text" name="topic" id="topic" class="form-control" formControlName="topic">
           <option value=""></option>
           <option value="alumniEvent">Alumni Event</option>
           <option value="job">Job</option>
@@ -56,15 +56,17 @@
           <option value="tefilos">Tefilos</option>
           <option value="other">Other</option>
         </select>
-        <span *ngIf="broadcastForm.get('subject').invalid && broadcastForm.get('subject').touched">Please make a
-          selection!</span>
+        <span *ngIf="broadcastForm.get('topic').invalid && broadcastForm.get('topic').touched">Please choose a
+          topic!</span>
       </div>
       <div class="col">
-        <label for="subjectLine">Subject Line</label>
+        <label for="subjectLine">Subject</label>
         <input type="text" name="subjectLine" id="subjectLine" class="form-control" formControlName="subjectLine">
+        <span *ngIf="broadcastForm.get('subjectLine').invalid && broadcastForm.get('subjectLine').touched">Please enter a
+          subject!</span>
       </div>
     </div>
-    <div *ngIf="broadcastForm.get('subject').value === 'tefilos'" class="form-row mb10">
+    <div *ngIf="broadcastForm.get('topic').value === 'tefilos'" class="form-row mb10">
       <div class="col-md-6">
         <label for="nameForDavening">Name of Person Needing Tefilos</label>
         <input type="text" name="nameForDavening" id="hebrewName"

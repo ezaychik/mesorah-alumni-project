@@ -16,11 +16,11 @@ export class SearchService {
 
     alumna2.firstName = 'Margaret';
     alumna2.lastName = 'Thatcher';
-    alumna1.id = 2;
+    alumna2.id = 2;
 
     alumna3.lastName = 'Currie';
     alumna3.firstName = 'Marie';
-    alumna1.id = 3;
+    alumna3.id = 3;
 
     const searchResults: SearchResult[] = [];
     searchResults.push(alumna1, alumna2, alumna3);
