@@ -5,7 +5,7 @@
       <select type="select" name="country" id="country" #country="ngModel" class="form-control"
         [(ngModel)]="searchTerms.terms.country" required class="form-control">
         <option value=""></option>
-        <option *ngFor="let country of getUniqueCountries()" value="{{country}}">{{country}}</option>
+        <option *ngFor="let country of (allLocations | unique: 'country')" value="{{country}}">{{country}}</option>
       </select>
       <span *ngIf="country.invalid && country.touched">Please select a country!</span>
     </div>
@@ -14,7 +14,8 @@
       <select type="select" name="state" id="state" #state="ngModel" class="form-control"
         [(ngModel)]="searchTerms.terms.state" [disabled]="searchTerms.terms.country!=='United States'">
         <option value=""></option>
-        <option *ngFor="let location of allLocations" value="{{location.state}}">{{states['default'][location.state]}}
+        <option *ngFor="let state of (allLocations | unique: 'state' | notNull)"
+          value="{{state}}">{{states['default'][state]}}
         </option>
       </select>
     </div>

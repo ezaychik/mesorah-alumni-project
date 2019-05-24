@@ -21,7 +21,4 @@ export class ByLocationComponent implements OnInit {
   ngOnInit() {
     this.allLocations = this.commonDataService.getAllLocations();
   }
-  getUniqueCountries() {
-    return [...Array.from(new Set(this.allLocations.map(location => location.country)))];
-  }
 }

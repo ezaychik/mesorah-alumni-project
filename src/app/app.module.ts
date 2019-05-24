@@ -26,6 +26,8 @@ import { ModalService } from './services/modal.service';
 import { AlumnaService } from './services/alumna.service';
 import { TefilosService } from './services/tefilos.service';
 import { CommonDataService } from './services/common-data.service';
+import { UniquePipe } from './pipes/unique.pipe';
+import { NotNullPipe } from './pipes/not-null.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { CommonDataService } from './services/common-data.service';
     ByOccupationComponent,
     PhoneNumberPipe,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UniquePipe,
+    NotNullPipe
   ],
   imports: [
     BrowserModule,
