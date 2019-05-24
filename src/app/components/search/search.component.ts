@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { SearchResult, Search } from 'src/app/models/search.model';
 import { SearchService } from 'src/app/services/search.service';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -28,9 +28,9 @@ export class SearchComponent implements OnInit {
       this.noResultsReturned = false;
     });
   }
-  getSearchTerms(componentReference) {
-    this.searchTerms = componentReference.searchTerms;
-    this.searchForm = componentReference.searchForm;
+  getSearchTerms(childSearch) {
+    this.searchTerms = childSearch.searchTerms;
+    this.searchForm = childSearch.searchForm;
   }
 
   async onSearch() {

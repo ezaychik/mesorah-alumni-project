@@ -40,7 +40,7 @@
 <p>You will receive an email when a new request for tefilos is made. You can change your preference here at any time.
 </p>
 <div class="form-check">
-  <input (click)="onChangeTefilaRequestPreference()" type="checkbox"
+  <input (change)="onChangeTefilaRequestPreference($event)" type="checkbox"
     [checked]="currentAlumna.isSignedUpForTefilaRequests" name="receiveTefilaRequests" id="toggleTefilaSignup"
     class="form-check-input">
   <label for="toggleTefilaSignup" class="form-check-label">I want to sign up!</label>

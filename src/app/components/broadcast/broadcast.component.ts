@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray, ValidatorFn } from '@angular/forms';
+import { CommonDataService } from 'src/app/services/common-data.service';
+import { Location } from 'src/app/models/location.model';
 
 @Component({
   selector: 'app-broadcast',
@@ -7,17 +9,18 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormArray, ValidatorFn
   styleUrls: ['./broadcast.component.less']
 })
 export class BroadcastComponent implements OnInit {
-  allGraduatingYears: number[] = [2000, 2001, 2002, 2003, 2004, 2005];
-  allLocations: string[] = ['New York, NY', 'Jerusalem, IL', 'Dallas, TX'];
+  allGraduatingYears: number[];
+  allLocations: Location[];
   selectedLocations: string[] = [];
   selectedYears: number[] = [];
   name = 'Amelia Badelia';
-  byYearFormControls = this.allGraduatingYears.map(control => new FormControl(false));
-  byLocationFormControls = this.allLocations.map(control => new FormControl(false));
+
   broadcastForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private commonDataService: CommonDataService) { }
 
   ngOnInit() {
+    this.allLocations = this.commonDataService.getAllLocations();
+    this.allGraduatingYears = this.commonDataService.getAllGraduatingYears();
     this.initForm();
     if (history.state.from && history.state.from === 'tefilos') {
       this.presetTefilaRequest();
@@ -28,11 +31,13 @@ export class BroadcastComponent implements OnInit {
     this.broadcastForm.get('topic').setValue('tefilos');
   }
   initForm() {
+    const byYearFormControls = this.allGraduatingYears.map(control => new FormControl(false));
+    const byLocationFormControls = this.allLocations.map(control => new FormControl(false));
     this.broadcastForm = this.formBuilder.group({
       replyTo: this.formBuilder.control(this.name),
       recipients: this.formBuilder.group({
-        byGraduatingYear: this.formBuilder.array(this.byYearFormControls, this.minSelectedValidator()),
-        byLocation: this.formBuilder.array(this.byLocationFormControls, this.minSelectedValidator()),
+        byGraduatingYear: this.formBuilder.array(byYearFormControls, this.minSelectedValidator()),
+        byLocation: this.formBuilder.array(byLocationFormControls, this.minSelectedValidator()),
       }),
       topic: this.formBuilder.control(null, Validators.required),
       subjectLine: this.formBuilder.control(null, Validators.required),

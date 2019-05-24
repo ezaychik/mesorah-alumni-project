@@ -23,6 +23,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ModalService } from './services/modal.service';
+import { AlumnaService } from './services/alumna.service';
+import { TefilosService } from './services/tefilos.service';
+import { CommonDataService } from './services/common-data.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,9 @@ import { ModalService } from './services/modal.service';
     ModalModule.forRoot(),
     BootstrapModalModule
   ],
-  providers: [SearchService, AuthService, AuthGuardService, ModalService],
+  providers: [
+    SearchService, AuthService, AuthGuardService, ModalService, AlumnaService, TefilosService, CommonDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Search, SearchType } from 'src/app/models/search.model';
+import { CommonDataService } from 'src/app/services/common-data.service';
 
 
 @Component({
@@ -11,9 +12,11 @@ import { Search, SearchType } from 'src/app/models/search.model';
 })
 export class ByYearComponent implements OnInit {
   searchTerms: Search = new Search(SearchType.YearGraduated, { yearGraduated: '' });
+  allYears: number[];
   @ViewChild('searchForm') searchForm: NgForm;
-  constructor() { }
+  constructor(private commonDataService: CommonDataService) { }
 
   ngOnInit() {
+    this.allYears = this.commonDataService.getAllGraduatingYears();
   }
 }

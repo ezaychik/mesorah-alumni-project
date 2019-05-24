@@ -37,7 +37,7 @@
                 class="form-check pl-4" formArrayName="byLocation">
                 <input type="checkbox" [formControlName]="i" (change)="onClickLocation($event, location)"
                   name="location" class="form-check-input">
-                <label for="location" class="form-check-label">{{allLocations[i]}}</label>
+                <label for="location" class="form-check-label">{{allLocations[i].city}}, {{allLocations[i].country}}</label>
               </div>
             </div>
           </div>
@@ -62,7 +62,8 @@
       <div class="col">
         <label for="subjectLine">Subject</label>
         <input type="text" name="subjectLine" id="subjectLine" class="form-control" formControlName="subjectLine">
-        <span *ngIf="broadcastForm.get('subjectLine').invalid && broadcastForm.get('subjectLine').touched">Please enter a
+        <span *ngIf="broadcastForm.get('subjectLine').invalid && broadcastForm.get('subjectLine').touched">Please enter
+          a
           subject!</span>
       </div>
     </div>
