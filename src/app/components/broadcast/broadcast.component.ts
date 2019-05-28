@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators, FormArray, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, FormArray, ValidatorFn, AbstractControl } from '@angular/forms';
 import { CommonDataService } from 'src/app/services/common-data.service';
 import { AlumnaLocation } from 'src/app/models/location.model';
 import { Alumna } from 'src/app/models/alumna/alumna';
@@ -17,10 +17,6 @@ export class BroadcastComponent implements OnInit {
   allGraduatingYears: number[];
   currentAlumna: Alumna;
   allLocations: AlumnaLocation[];
-  selectedLocations: string[] = [];
-  selectedYears: number[] = [];
-  name = 'Amelia Badelia';
-
   broadcastForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private commonDataService: CommonDataService,
     private broadcastService: BroadcastService, private alumnaService: AlumnaService, private router: Router) { }
@@ -45,20 +41,28 @@ export class BroadcastComponent implements OnInit {
       replyTo: this.formBuilder.control(
         `${this.currentAlumna.personalInfo.name} ${this.currentAlumna.personalInfo.lastNameAsMesorahStudent}`),
       recipients: this.formBuilder.group({
-        byGraduatingYear: this.formBuilder.array(byYearFormControls, this.minSelectedValidator()),
-        byLocation: this.formBuilder.array(byLocationFormControls, this.minSelectedValidator()),
-      }),
+        byGraduatingYear: this.formBuilder.array(byYearFormControls),
+        byLocation: this.formBuilder.array(byLocationFormControls),
+      }, { validator: this.minSelectedVal() }),
       topic: this.formBuilder.control(null, Validators.required),
       subjectLine: this.formBuilder.control(null, Validators.required),
       nameForDavening: this.formBuilder.control(null),
       description: this.formBuilder.control(null, [Validators.required, Validators.maxLength(200)])
     });
     this.activateNameForDaveningValidation();
+
   }
-  minSelectedValidator(min = 1): ValidatorFn {
-    const validator: ValidatorFn = (formArray: FormArray) => {
-      const totalSelected = formArray.controls.map(control => control.value).filter(value => value === true);
-      return totalSelected.length > 0 ? null : { required: true };
+  minSelectedVal() {
+    const validator: ValidatorFn = (control: FormGroup) => {
+      const recipientControls: any[] = [
+        control.get('byGraduatingYear'),
+        control.get('byLocation')
+      ];
+      const totalSelected = [];
+      for (const recCtrl of recipientControls) {
+        totalSelected.push(recCtrl.controls.map(ctrl => ctrl.value).filter(val => val === true));
+      }
+      return totalSelected[0].length > 0 || totalSelected[1].length > 0 ? null : { required: true };
     };
     return validator;
   }

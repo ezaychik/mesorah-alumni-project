@@ -12,14 +12,14 @@
       select at least one recipient group!</span>
     <div class="form-row mb10">
       <div class="col-md-6 flex-parent" formGroupName="recipients">
-        <div>
+        <div formArrayName="byGraduatingYear">
           <button class="btn btn-light dropdown-toggle" [ngClass]="{'invalid-message': onlyRecipientsInvalid()}"
             data-toggle="dropdown">Graduating Year</button>
           <div class="dropdown-menu">
             <div class="form-group">
               <div
                 *ngFor="let year of broadcastForm.get('recipients')['controls'].byGraduatingYear.controls; let i = index"
-                class="form-check pl-4" formArrayName="byGraduatingYear">
+                class="form-check pl-4">
                 <input type="checkbox" [formControlName]="i" name="graduatingYear" class="form-check-input">
                 <label for="graduatingYear" class="form-check-label">{{allGraduatingYears[i]}} </label>
               </div>
