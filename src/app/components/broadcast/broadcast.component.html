@@ -20,8 +20,7 @@
               <div
                 *ngFor="let year of broadcastForm.get('recipients')['controls'].byGraduatingYear.controls; let i = index"
                 class="form-check pl-4" formArrayName="byGraduatingYear">
-                <input type="checkbox" [formControlName]="i" (change)="onClickYear($event, year)" name="graduatingYear"
-                  class="form-check-input">
+                <input type="checkbox" [formControlName]="i" name="graduatingYear" class="form-check-input">
                 <label for="graduatingYear" class="form-check-label">{{allGraduatingYears[i]}} </label>
               </div>
             </div>
@@ -35,9 +34,9 @@
               <div
                 *ngFor="let location of broadcastForm.get('recipients')['controls'].byLocation.controls; let i = index"
                 class="form-check pl-4" formArrayName="byLocation">
-                <input type="checkbox" [formControlName]="i" (change)="onClickLocation($event, location)"
-                  name="location" class="form-check-input">
-                <label for="location" class="form-check-label">{{allLocations[i].city}}, {{allLocations[i].country}}</label>
+                <input type="checkbox" [formControlName]="i" name="location" class="form-check-input">
+                <label for="location" class="form-check-label">{{allLocations[i].city}},
+                  {{allLocations[i].country}}</label>
               </div>
             </div>
           </div>
@@ -93,7 +92,7 @@
       </div>
     </div>
     <div class="mb10">
-      <button type="submit" class="btn btn-primary" [disabled]="broadcastForm.invalid">Send Message</button>
+      <button type="submit" [disabled]="broadcastForm.invalid" class="btn btn-primary">Send Message</button>
     </div>
   </form>
 </div>

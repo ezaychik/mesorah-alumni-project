@@ -28,6 +28,7 @@ import { TefilosService } from './services/tefilos.service';
 import { CommonDataService } from './services/common-data.service';
 import { UniquePipe } from './pipes/unique.pipe';
 import { NotNullPipe } from './pipes/not-null.pipe';
+import { BroadcastService } from './services/broadcast.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { NotNullPipe } from './pipes/not-null.pipe';
     BootstrapModalModule
   ],
   providers: [
-    SearchService, AuthService, AuthGuardService, ModalService, AlumnaService, TefilosService, CommonDataService
+    SearchService, AuthService, AuthGuardService, ModalService, AlumnaService, TefilosService, CommonDataService, BroadcastService
   ],
   bootstrap: [AppComponent]
 })

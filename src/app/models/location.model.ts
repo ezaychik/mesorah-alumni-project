@@ -1,4 +1,4 @@
-export class Location {
+export class AlumnaLocation {
     city: string;
     country: string;
     state?: string;

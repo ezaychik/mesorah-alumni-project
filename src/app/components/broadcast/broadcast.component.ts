@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray, ValidatorFn } from '@angular/forms';
 import { CommonDataService } from 'src/app/services/common-data.service';
-import { Location } from 'src/app/models/location.model';
+import { AlumnaLocation } from 'src/app/models/location.model';
+import { Alumna } from 'src/app/models/alumna/alumna';
+import { AlumnaService } from 'src/app/services/alumna.service';
+import { BroadcastService } from 'src/app/services/broadcast.service';
+import { Broadcast } from 'src/app/models/broadcast.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-broadcast',
@@ -10,15 +15,18 @@ import { Location } from 'src/app/models/location.model';
 })
 export class BroadcastComponent implements OnInit {
   allGraduatingYears: number[];
-  allLocations: Location[];
+  currentAlumna: Alumna;
+  allLocations: AlumnaLocation[];
   selectedLocations: string[] = [];
   selectedYears: number[] = [];
   name = 'Amelia Badelia';
 
   broadcastForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private commonDataService: CommonDataService) { }
+  constructor(private formBuilder: FormBuilder, private commonDataService: CommonDataService,
+    private broadcastService: BroadcastService, private alumnaService: AlumnaService, private router: Router) { }
 
   ngOnInit() {
+    this.currentAlumna = this.alumnaService.getAlumna(5);
     this.allLocations = this.commonDataService.getAllLocations();
     this.allGraduatingYears = this.commonDataService.getAllGraduatingYears();
     this.initForm();
@@ -31,10 +39,11 @@ export class BroadcastComponent implements OnInit {
     this.broadcastForm.get('topic').setValue('tefilos');
   }
   initForm() {
-    const byYearFormControls = this.allGraduatingYears.map(control => new FormControl(false));
-    const byLocationFormControls = this.allLocations.map(control => new FormControl(false));
+    const byYearFormControls = this.allGraduatingYears.map(() => new FormControl(false));
+    const byLocationFormControls = this.allLocations.map(() => new FormControl(false));
     this.broadcastForm = this.formBuilder.group({
-      replyTo: this.formBuilder.control(this.name),
+      replyTo: this.formBuilder.control(
+        `${this.currentAlumna.personalInfo.name} ${this.currentAlumna.personalInfo.lastNameAsMesorahStudent}`),
       recipients: this.formBuilder.group({
         byGraduatingYear: this.formBuilder.array(byYearFormControls, this.minSelectedValidator()),
         byLocation: this.formBuilder.array(byLocationFormControls, this.minSelectedValidator()),
@@ -64,25 +73,9 @@ export class BroadcastComponent implements OnInit {
     );
   }
   onSubmit() {
-    this.extractSelectedRecipientGroups();
-    console.log(this.broadcastForm);
-
-  }
-  extractSelectedRecipientGroups() {
-    this.selectedYears = this.broadcastForm.get('recipients').get('byGraduatingYear').value
-      .map((checked, index) => checked ? this.allGraduatingYears[index] : null)
-      .filter(value => value !== null);
-    this.selectedLocations = this.broadcastForm.get('recipients').get('byLocation').value
-      .map((checked, index) => checked ? this.allLocations[index] : null)
-      .filter(value => value !== null);
-  }
-  onClickYear(event: any, year: number) {
-    event.target.checked ? this.selectedYears.push(year) :
-      this.selectedYears.splice(this.selectedYears.indexOf(year), 1);
-  }
-  onClickLocation(event: any, location: string) {
-    event.target.checked ? this.selectedLocations.push(location) :
-      this.selectedLocations.splice(this.selectedLocations.indexOf(location), 1);
+    const message = this.broadcastService.broadcastMessage(this.broadcastForm.value as Broadcast);
+    window.alert(message);
+    this.router.navigate(['home']);
   }
   onlyRecipientsInvalid(): boolean {
     return this.broadcastForm.touched && this.broadcastForm.invalid &&

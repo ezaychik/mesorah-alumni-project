@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Location } from '../models/location.model';
+import { AlumnaLocation } from '../models/location.model';
 
 @Injectable()
 export class CommonDataService {
 
   private allGraduatingYears: number[];
-  private allLocations: Location[];
+  private allLocations: AlumnaLocation[];
 
   constructor() { }
 

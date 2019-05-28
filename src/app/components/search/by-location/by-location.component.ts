@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Search, SearchType } from 'src/app/models/search.model';
 import { NgForm } from '@angular/forms';
 
-import { Location } from 'src/app/models/location.model';
+import { AlumnaLocation } from 'src/app/models/location.model';
 import { CommonDataService } from 'src/app/services/common-data.service';
 import * as states from '../../../../assets/usStates.json';
 
@@ -14,7 +14,7 @@ import * as states from '../../../../assets/usStates.json';
 export class ByLocationComponent implements OnInit {
   searchTerms: Search = new Search(SearchType.Location, { city: '', state: '', country: '' });
   states = states;
-  allLocations: Location[];
+  allLocations: AlumnaLocation[];
   @ViewChild('searchForm') searchForm: NgForm;
   constructor(private commonDataService: CommonDataService) { }
 
