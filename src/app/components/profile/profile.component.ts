@@ -14,18 +14,17 @@ import { CommonDataService } from 'src/app/services/common-data.service';
 export class ProfileComponent implements OnInit {
   currentAlumna: Alumna;
   profileForm: FormGroup;
+  isLoaded = false;
   allGraduatingYears: number[];
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute,
     private alumnaService: AlumnaService, private commonDataService: CommonDataService) { }
 
   ngOnInit() {
-    this.setCurrentAlumna();
-    this.initForm();
-    this.checkIfFormIsEditable();
-  }
-  setCurrentAlumna() {
-    this.activatedRoute.paramMap.subscribe(params => {
-      this.currentAlumna = this.alumnaService.getAlumna(+params.get('id'));
+    this.activatedRoute.paramMap.subscribe(async params => {
+      this.currentAlumna = await this.alumnaService.getAlumna(+params.get('id')).toPromise();
+      this.initForm();
+      this.checkIfFormIsEditable();
+      this.isLoaded = true;
     });
   }
   initForm() {
@@ -47,9 +46,9 @@ export class ProfileComponent implements OnInit {
     }
     this.profileForm = this.fb.group({
       personal: this.fb.group({
-        firstName: this.fb.control(this.currentAlumna.personalInfo.name, Validators.required),
-        lastNameAsStudent: this.fb.control(this.currentAlumna.personalInfo.lastNameAsMesorahStudent, Validators.required),
-        yearGraduated: this.fb.control(this.currentAlumna.personalInfo.yearGraduated, Validators.required)
+        firstName: this.fb.control(this.currentAlumna.personal.firstName, Validators.required),
+        lastNameAsStudent: this.fb.control(this.currentAlumna.personal.lastNameAsStudent, Validators.required),
+        yearGraduated: this.fb.control(this.currentAlumna.personal.yearGraduated, Validators.required)
       }),
       address: this.fb.group({
         address: this.fb.control(this.currentAlumna.address.address),
@@ -73,8 +72,8 @@ export class ProfileComponent implements OnInit {
         children: childrenArray
       }),
       professional: this.fb.group({
-        profession: this.fb.control(this.currentAlumna.profession.occupation),
-        company: this.fb.control(this.currentAlumna.profession.company)
+        profession: this.fb.control(this.currentAlumna.professional.profession),
+        company: this.fb.control(this.currentAlumna.professional.company)
       })
     });
 
@@ -102,6 +101,8 @@ export class ProfileComponent implements OnInit {
     if (this.currentAlumna.id !== this.alumnaService.getIdOfActiveAlumna()) {
       return;
     }
-    this.alumnaService.updateAlumna(this.profileForm.value as Alumna);
+    this.alumnaService.updateAlumna(this.profileForm.value as Alumna).subscribe(
+      (response) => console.log(response)
+    );
   }
 }

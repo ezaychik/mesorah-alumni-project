@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { NewUser } from 'src/app/models/new-user.model';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.less']
 })
 export class RegisterComponent implements OnInit {
-  alreadyRegisteredMessage = '';
+  alreadyRegisteredMessage;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -18,8 +19,8 @@ export class RegisterComponent implements OnInit {
     }
   }
   onSignup(form: NgForm) {
-    const email = form.value.email;
-    const password = form.value.password;
-    this.alreadyRegisteredMessage = this.authService.register(email, password);
+    const newUser: NewUser = new NewUser(form.value.firstName, form.value.lastName, form.value.email, form.value.password);
+    this.alreadyRegisteredMessage = this.authService.register(newUser);
+    console.log(this.alreadyRegisteredMessage);
   }
 }

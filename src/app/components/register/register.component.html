@@ -1,6 +1,16 @@
 <div class="col-md-4">
   <form (ngSubmit)="onSignup(f)" #f="ngForm">
     <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" name="firstName" id="firstName" #firstName="ngModel" ngModel class="form-control" required>
+      <span *ngIf="firstName.touched && firstName.invalid">Please enter first name!</span>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name (As Mesorah Student)</label>
+      <input type="text" name="lastName" id="lastName" #lastName="ngModel" ngModel class="form-control" required>
+      <span *ngIf="lastName.touched && lastName.invalid">Please enter last name!</span>
+    </div>
+    <div class="form-group">
       <label for="email">Email (this will be your login name)</label>
       <input type="email" name="email" id="email" ngModel class="form-control" required>
     </div>

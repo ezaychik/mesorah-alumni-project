@@ -29,6 +29,7 @@ import { CommonDataService } from './services/common-data.service';
 import { UniquePipe } from './pipes/unique.pipe';
 import { NotNullPipe } from './pipes/not-null.pipe';
 import { BroadcastService } from './services/broadcast.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { BroadcastService } from './services/broadcast.service';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    HttpClientModule,
     ModalModule.forRoot(),
     BootstrapModalModule
   ],

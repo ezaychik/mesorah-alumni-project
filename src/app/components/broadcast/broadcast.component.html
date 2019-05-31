@@ -1,4 +1,4 @@
-<div class="mb10">
+<div class="mb10" *ngIf="isLoaded">
   <form [formGroup]="broadcastForm" (ngSubmit)="onSubmit()">
     <div class="form-row mb10">
       <div class="col-md-6">

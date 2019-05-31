@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Alumna } from '../models/alumna/alumna';
 import { PersonalInfo } from '../models/alumna/personalDetails/personalInfo';
@@ -8,7 +9,7 @@ import { ProfessionalInfo } from '../models/alumna/personalDetails/professionalI
 import { Child, Gender } from '../models/alumna/family/child';
 import { Address } from '../models/alumna/personalDetails/address';
 import { Husband } from '../models/alumna/family/husband';
-
+import { Observable } from 'rxjs';
 @Injectable()
 export class AlumnaService {
   private idOfActiveAlumna: number;
@@ -24,10 +25,10 @@ export class AlumnaService {
   ];
 
 
-  constructor() {
-    this.personalInfo.name = 'Shprintza';
-    this.personalInfo.lastNameAsMesorahStudent = 'Feingoldbergerstein';
-    this.personalInfo.yearGraduated = 2011;
+  constructor(private httpClient: HttpClient) {
+    this.personalInfo.firstName = 'Shprintza';
+    this.personalInfo.lastNameAsStudent = 'Feingoldbergerstein';
+    this.personalInfo.yearGraduated = 2001;
 
     this.contact.email = 'shprintzy234@shprintz.sp';
     this.contact.phoneNumber = 3214567890;
@@ -45,21 +46,22 @@ export class AlumnaService {
     this.family.husband.occupation = 'Undertaker';
     this.family.hasChildren = true;
     this.family.children = this.children;
-    this.profession.occupation = 'Mother';
+    this.profession.profession = 'Mother';
     this.profession.company = 'Family';
 
   }
 
-  getAlumna(id: number) {
+  getAlumna(id: number): Observable<Alumna> {
     // call some APi
+    return this.httpClient.get<Alumna>('https://mesorah-alumni-network.firebaseio.com/alumni.json?id=' + id);
     const alumna: Alumna = new Alumna();
-    alumna.personalInfo = this.personalInfo;
+    alumna.personal = this.personalInfo;
     alumna.address = this.address;
     alumna.family = this.family;
     alumna.contact = this.contact;
-    alumna.profession = this.profession;
+    alumna.professional = this.profession;
     alumna.id = id;
-    return alumna;
+    //return alumna;
   }
   getIdOfActiveAlumna() {
     return this.idOfActiveAlumna;
@@ -68,8 +70,8 @@ export class AlumnaService {
     this.idOfActiveAlumna = id;
   }
   updateAlumna(updatedAluma: Alumna) {
-    // call some API to update and return updated alumna
-    console.log(updatedAluma);
+    updatedAluma.id = this.idOfActiveAlumna;
+    return this.httpClient.put('https://mesorah-alumni-network.firebaseio.com/alumni.json', updatedAluma);
   }
   updateTefilaRequestPreference(value: boolean) {
     // call some API, with value, and id as param

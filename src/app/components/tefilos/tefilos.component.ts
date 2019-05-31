@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 })
 export class TefilosComponent implements OnInit, OnDestroy {
   currentAlumna: Alumna;
+  isloaded = false;
   requestsForDisplay: TefilaRequest[];
   showOnlyMyRequests = false;
   typeOfRequestsToViewOnClick = 'My';
@@ -21,12 +22,18 @@ export class TefilosComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private alumnaService: AlumnaService, private tefilaService: TefilosService) { }
   ngOnInit() {
-    this.currentAlumna = this.alumnaService.getAlumna(5);//this.alumnaService.getIdOfActiveAlumna()
-    this.requestsForDisplay = this.tefilaService.getActiveTefilaRequests();
-    this.tefilosChangedSubscription = this.tefilaService.tefilosChanged.subscribe(
-      (tefilos: TefilaRequest[]) => {
-        this.showOnlyMyRequests ? this.requestsForDisplay = this.filterMyTefilaRequests(tefilos) : this.requestsForDisplay = tefilos;
-      }
+    this.alumnaService.getAlumna(this.alumnaService.getIdOfActiveAlumna()).toPromise().then(
+      (alumna) => {
+        this.currentAlumna = alumna;
+        this.requestsForDisplay = this.tefilaService.getActiveTefilaRequests();
+        this.tefilosChangedSubscription = this.tefilaService.tefilosChanged.subscribe(
+          (tefilos: TefilaRequest[]) => {
+            this.showOnlyMyRequests ? this.requestsForDisplay = this.filterMyTefilaRequests(tefilos) : this.requestsForDisplay = tefilos;
+          }
+        );
+        this.isloaded = true;
+      },
+      (err) => console.log(err)
     );
   }
   ngOnDestroy(): void {

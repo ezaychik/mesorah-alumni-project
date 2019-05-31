@@ -1,4 +1,4 @@
 export class ProfessionalInfo {
-    occupation: string;
+    profession: string;
     company: string;
 }

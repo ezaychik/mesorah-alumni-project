@@ -16,20 +16,26 @@ import { Router } from '@angular/router';
 export class BroadcastComponent implements OnInit {
   allGraduatingYears: number[];
   currentAlumna: Alumna;
+  isLoaded = false;
   allLocations: AlumnaLocation[];
   broadcastForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private commonDataService: CommonDataService,
     private broadcastService: BroadcastService, private alumnaService: AlumnaService, private router: Router) { }
 
   ngOnInit() {
-    this.currentAlumna = this.alumnaService.getAlumna(5);
-    this.allLocations = this.commonDataService.getAllLocations();
-    this.allGraduatingYears = this.commonDataService.getAllGraduatingYears();
-    this.initForm();
-    if (history.state.from && history.state.from === 'tefilos') {
-      this.presetTefilaRequest();
-    }
-
+    this.alumnaService.getAlumna(this.alumnaService.getIdOfActiveAlumna()).toPromise().then(
+      (alumna) => {
+        this.currentAlumna = alumna;
+        this.allLocations = this.commonDataService.getAllLocations();
+        this.allGraduatingYears = this.commonDataService.getAllGraduatingYears();
+        this.initForm();
+        if (history.state.from && history.state.from === 'tefilos') {
+          this.presetTefilaRequest();
+        }
+        this.isLoaded = true;
+      },
+      (err) => console.log(err)
+    );
   }
   presetTefilaRequest() {
     this.broadcastForm.get('topic').setValue('tefilos');
@@ -39,7 +45,7 @@ export class BroadcastComponent implements OnInit {
     const byLocationFormControls = this.allLocations.map(() => new FormControl(false));
     this.broadcastForm = this.formBuilder.group({
       replyTo: this.formBuilder.control(
-        `${this.currentAlumna.personalInfo.name} ${this.currentAlumna.personalInfo.lastNameAsMesorahStudent}`),
+        `${this.currentAlumna.personal.firstName} ${this.currentAlumna.personal.lastNameAsStudent}`),
       recipients: this.formBuilder.group({
         byGraduatingYear: this.formBuilder.array(byYearFormControls),
         byLocation: this.formBuilder.array(byLocationFormControls),

@@ -1,6 +1,6 @@
 
 export class PersonalInfo {
-    name: string;
-    lastNameAsMesorahStudent: string;
+    firstName: string;
+    lastNameAsStudent: string;
     yearGraduated: number;
 }
