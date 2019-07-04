@@ -18,7 +18,7 @@ export class AuthService {
         if (alreadyRegistered) {
           return 'User with that email alraedy exists.';
         } else {
-          this.alumnaService.setIdOfActiveAlumna(5);
+          this.alumnaService.setActiveAlumna(5);
           this.router.navigate(['home']);
           this.isAuthenticated = true;
         }
@@ -33,7 +33,7 @@ export class AuthService {
     const isValidUser = true;
     if (isValidUser) {
       this.isAuthenticated = true;
-      this.alumnaService.setIdOfActiveAlumna(5);
+      this.alumnaService.setActiveAlumna(5);
       this.router.navigate(['home']);
     } else {
       this.isAuthenticated = false;

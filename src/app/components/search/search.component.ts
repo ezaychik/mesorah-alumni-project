@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { SearchResult, Search } from 'src/app/models/search.model';
 import { SearchService } from 'src/app/services/search.service';
+import { Alumna } from 'src/app/models/alumna/alumna';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { SearchService } from 'src/app/services/search.service';
 })
 export class SearchComponent implements OnInit {
 
-  searchResults: SearchResult[] = [];
+  searchResults: Alumna[] = [];
   searchTerms: Search;
   searchForm: NgForm;
   noResultsReturned = false;
@@ -35,10 +36,15 @@ export class SearchComponent implements OnInit {
 
   async onSearch() {
     try {
-      this.searchResults = await this.searchService.getAlumni(this.searchTerms) as SearchResult[];
-      if (this.searchResults.length < 1) {
-        this.noResultsReturned = true;
-      }
+      await this.searchService.getAlumni(this.searchTerms).subscribe(
+        (results) => {
+          if (results.length < 1) {
+            this.noResultsReturned = true;
+          } else {
+            this.searchResults = results;
+          }
+        }
+      );
     } catch (error) {
       console.log(error);
     }

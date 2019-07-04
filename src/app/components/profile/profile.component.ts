@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { Alumna } from 'src/app/models/alumna/alumna';
 import { AlumnaService } from 'src/app/services/alumna.service';
@@ -17,11 +17,15 @@ export class ProfileComponent implements OnInit {
   isLoaded = false;
   allGraduatingYears: number[];
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute,
-    private alumnaService: AlumnaService, private commonDataService: CommonDataService) { }
+              private alumnaService: AlumnaService, private commonDataService: CommonDataService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(async params => {
-      this.currentAlumna = await this.alumnaService.getAlumna(+params.get('id')).toPromise();
+      if (!params.get('id')) {
+        this.currentAlumna = this.alumnaService.getActiveAlumna();
+      } else {
+        this.currentAlumna = await this.alumnaService.getAlumna(+params.get('id')).toPromise();
+      }
       this.initForm();
       this.checkIfFormIsEditable();
       this.isLoaded = true;
@@ -79,10 +83,7 @@ export class ProfileComponent implements OnInit {
 
   }
   checkIfFormIsEditable() {
-    this.activatedRoute.paramMap.subscribe(() => {
-      this.currentAlumna.id !== this.alumnaService.getIdOfActiveAlumna() ? this.profileForm.disable() : this.profileForm.enable();
-    });
-
+    this.currentAlumna.id !== this.alumnaService.getIdOfActiveAlumna() ? this.profileForm.disable() : this.profileForm.enable();
   }
 
   onAddChild() {
@@ -102,7 +103,8 @@ export class ProfileComponent implements OnInit {
       return;
     }
     this.alumnaService.updateAlumna(this.profileForm.value as Alumna).subscribe(
-      (response) => console.log(response)
+      (response) => console.log(response),
+      (error) => console.log(error)
     );
   }
 }

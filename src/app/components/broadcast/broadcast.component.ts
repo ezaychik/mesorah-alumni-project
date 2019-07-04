@@ -19,23 +19,18 @@ export class BroadcastComponent implements OnInit {
   isLoaded = false;
   allLocations: AlumnaLocation[];
   broadcastForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private commonDataService: CommonDataService,
-    private broadcastService: BroadcastService, private alumnaService: AlumnaService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private broadcastService: BroadcastService,
+              private alumnaService: AlumnaService, private router: Router) { }
 
   ngOnInit() {
-    this.alumnaService.getAlumna(this.alumnaService.getIdOfActiveAlumna()).toPromise().then(
-      (alumna) => {
-        this.currentAlumna = alumna;
-        this.allLocations = this.commonDataService.getAllLocations();
-        this.allGraduatingYears = this.commonDataService.getAllGraduatingYears();
-        this.initForm();
-        if (history.state.from && history.state.from === 'tefilos') {
-          this.presetTefilaRequest();
-        }
-        this.isLoaded = true;
-      },
-      (err) => console.log(err)
-    );
+    this.currentAlumna = this.alumnaService.getActiveAlumna();
+    this.allLocations = this.broadcastService.allLocations;
+    this.allGraduatingYears = this.broadcastService.allGraduatingYears;
+    this.initForm();
+    if (history.state.from && history.state.from === 'tefilos') {
+      this.presetTefilaRequest();
+    }
+    this.isLoaded = true;
   }
   presetTefilaRequest() {
     this.broadcastForm.get('topic').setValue('tefilos');
@@ -83,7 +78,7 @@ export class BroadcastComponent implements OnInit {
     );
   }
   onSubmit() {
-    const message = this.broadcastService.broadcastMessage(this.broadcastForm.value as Broadcast);
+    const message = this.broadcastService.broadcastMessage(this.broadcastForm.value as Broadcast, this.currentAlumna.id);
     window.alert(message);
     this.router.navigate(['home']);
   }

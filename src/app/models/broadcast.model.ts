@@ -1,5 +1,4 @@
 import { AlumnaLocation } from './location.model';
-
 export class Broadcast {
     broadcasterId: number;
     replyTo: string;

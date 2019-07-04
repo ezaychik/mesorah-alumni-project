@@ -1,0 +1,342 @@
+{
+  "alumni": [
+    {
+      "personal": {
+        "firstName": "Shprintza",
+        "lastNameAsStudent": "Feingoldbergerstein",
+        "yearGraduated": "2003"
+      },
+      "address": {
+        "address": "981 Mitzvah Boulevard",
+        "city": "Los Angeles",
+        "state": "CA",
+        "country": "US",
+        "postalCode": null
+      },
+      "contact": {
+        "email": "shprintzy234@shprintz.sp",
+        "phoneNumber": 3214567890
+      },
+      "family": {
+        "isMarried": true,
+        "husband": {
+          "firstName": "Aharon",
+          "lastName": "Silversilverstien",
+          "occupation": "Undertaker"
+        },
+        "hasChildren": true,
+        "children": [
+          {
+            "name": "Chaim",
+            "birthday": "2015-11-23T06:00:00.000Z",
+            "gender": "MALE"
+          },
+          {
+            "name": "Hinda",
+            "birthday": "2017-01-12T06:00:00.000Z",
+            "gender": "FEMALE"
+          },
+          {
+            "name": "Shmulke Poulke",
+            "birthday": "2019-04-30T05:00:00.000Z",
+            "gender": "MALE"
+          }
+        ]
+      },
+      "professional": {
+        "profession": "Mother",
+        "company": "Family"
+      },
+      "isSignedUpForTefilaRequests": true,
+      "id": 5
+    },
+    {
+      "address": {
+        "address": "981 Mitzvah Boulevard",
+        "city": "Los Angeles",
+        "country": "US",
+        "state": "CA"
+      },
+      "contact": {
+        "email": "shprintzy234@shprintz.sp",
+        "phoneNumber": 3214567890
+      },
+      "family": {
+        "children": [
+          {
+            "birthday": "2015-11-23T06:00:00.000Z",
+            "gender": "MALE",
+            "name": "Chaim"
+          },
+          {
+            "birthday": "2017-01-12T06:00:00.000Z",
+            "gender": "FEMALE",
+            "name": "Hinda"
+          },
+          {
+            "birthday": "2019-04-30T05:00:00.000Z",
+            "gender": "MALE",
+            "name": "Shmulke Poulke"
+          }
+        ],
+        "hasChildren": true,
+        "husband": {
+          "firstName": "Aharon",
+          "lastName": "Silversilverstien",
+          "occupation": "Undertaker"
+        },
+        "isMarried": true
+      },
+      "id": 4,
+      "isSignedUpForTefilaRequests": true,
+      "personal": {
+        "firstName": "Leah Rochel Bilha Zilpa",
+        "lastNameAsStudent": "Smith",
+        "yearGraduated": "2005"
+      },
+      "professional": {
+        "company": "Family",
+        "profession": "Mother"
+      }
+    },
+    {
+      "address": {
+        "address": "981 Mitzvah Boulevard",
+        "city": "New York",
+        "country": "US",
+        "state": "NY"
+      },
+      "contact": {
+        "email": "shprintzy234@shprintz.sp",
+        "phoneNumber": 3214567890
+      },
+      "family": {
+        "children": [
+          {
+            "birthday": "2015-11-23T06:00:00.000Z",
+            "gender": "MALE",
+            "name": "Chaim"
+          },
+          {
+            "birthday": "2017-01-12T06:00:00.000Z",
+            "gender": "FEMALE",
+            "name": "Hinda"
+          },
+          {
+            "birthday": "2019-04-30T05:00:00.000Z",
+            "gender": "MALE",
+            "name": "Shmulke Poulke"
+          }
+        ],
+        "hasChildren": true,
+        "husband": {
+          "firstName": "Aharon",
+          "lastName": "Silversilverstien",
+          "occupation": "Undertaker"
+        },
+        "isMarried": true
+      },
+      "isSignedUpForTefilaRequests": true,
+      "id": 3,
+      "personal": {
+        "firstName": "Talia",
+        "lastNameAsStudent": "Millevsky",
+        "yearGraduated": "2012"
+      },
+      "professional": {
+        "company": "Family",
+        "profession": "Mother"
+      }
+    },
+    {
+      "address": {
+        "address": "981 Mitzvah Boulevard",
+        "city": "Jerusalem",
+        "country": "IL"
+      },
+      "contact": {
+        "email": "shprintzy234@shprintz.sp",
+        "phoneNumber": 3214567890
+      },
+      "family": {
+        "children": [
+          {
+            "birthday": "2015-11-23T06:00:00.000Z",
+            "gender": "MALE",
+            "name": "Chaim"
+          },
+          {
+            "birthday": "2017-01-12T06:00:00.000Z",
+            "gender": "FEMALE",
+            "name": "Hinda"
+          },
+          {
+            "birthday": "2019-04-30T05:00:00.000Z",
+            "gender": "MALE",
+            "name": "Shmulke Poulke"
+          }
+        ],
+        "hasChildren": true,
+        "husband": {
+          "firstName": "Aharon",
+          "lastName": "Silversilverstien",
+          "occupation": "Undertaker"
+        },
+        "isMarried": true
+      },
+      "isSignedUpForTefilaRequests": false,
+      "id": 2,
+      "personal": {
+        "firstName": "Meira",
+        "lastNameAsStudent": "Aardvark",
+        "yearGraduated": "2008"
+      },
+      "professional": {
+        "company": "Family",
+        "profession": "Mother"
+      }
+    },
+    {
+      "address": {
+        "address": "981 Mitzvah Boulevard",
+        "city": "Dallas",
+        "country": "US",
+        "state": "TX"
+      },
+      "contact": {
+        "email": "shprintzy234@shprintz.sp",
+        "phoneNumber": 3214567890
+      },
+      "family": {
+        "children": [
+          {
+            "birthday": "2015-11-23T06:00:00.000Z",
+            "gender": "MALE",
+            "name": "Chaim"
+          },
+          {
+            "birthday": "2017-01-12T06:00:00.000Z",
+            "gender": "FEMALE",
+            "name": "Hinda"
+          },
+          {
+            "birthday": "2019-04-30T05:00:00.000Z",
+            "gender": "MALE",
+            "name": "Shmulke Poulke"
+          }
+        ],
+        "hasChildren": true,
+        "husband": {
+          "firstName": "Aharon",
+          "lastName": "Silversilverstien",
+          "occupation": "Undertaker"
+        },
+        "isMarried": true
+      },
+      "id": 1,
+      "isSignedUpForTefilaRequests": false,
+      "personal": {
+        "firstName": "Eliana",
+        "lastNameAsStudent": "Marx-Lenin",
+        "yearGraduated": "2001"
+      },
+      "professional": {
+        "company": "Family",
+        "profession": "Mother"
+      }
+    }
+  ],
+  "tefilos": [
+    {
+      "dateOfRequest": "Today",
+      "name": "Mo ben Go",
+      "id": 1,
+      "requester": "Eliana Marx-Lenin",
+      "requesterId": 1,
+      "description": "Acute Sneezing"
+    },
+    {
+      "dateOfRequest": "Tomorrow",
+      "name": "Mo ben Lo",
+      "id": 2,
+      "requester": "Meira Aardvark",
+      "requesterId": 2,
+      "description": "Obtuse Sneezing"
+    },
+    {
+      "dateOfRequest": "Yesterday",
+      "name": "Gro ben Elgo",
+      "requester": "Eliana Marx-Lenin",
+      "id": 3,
+      "requesterId": 1,
+      "description": "Undereating"
+    },
+    {
+      "dateOfRequest": "Monday",
+      "name": "Ta bas Sha",
+      "id": 4,
+      "requester": "Talia Millevsky",
+      "requesterId": 3,
+      "description": "Overeating"
+    },
+    {
+      "dateOfRequest": "Friday",
+      "name": "Gra ben Bla",
+      "id": 5,
+      "requester": "Shprintza Feingoldbergerstein",
+      "requesterId": 5,
+      "description": "Overheatings"
+    },
+    {
+      "dateOfRequest": "Friday",
+      "name": "Gra ben Bla",
+      "id": 6,
+      "requester": "Shprintza Feingoldbergerstein",
+      "requesterId": 5,
+      "description": "Epileptic Excitement"
+    }
+  ],
+  "allGraduatingYears": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+  ],
+  "allLocations": [
+    {
+      "city": "Dallas",
+      "state": "TX",
+      "country": "United States"
+    },
+    {
+      "city": "New York",
+      "state": "NY",
+      "country": "United States"
+    },
+    {
+      "city": "Jerusalem",
+      "country": "Israel"
+    },
+    {
+      "city": "Los Angeles",
+      "state": "CA",
+      "country": "United States"
+    }
+  ]
+}

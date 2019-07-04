@@ -1,34 +1,44 @@
-import { Injectable } from '@angular/core';
-import { TefilaRequest } from '../models/tefilaRequest';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+import { TefilaRequest } from '../models/tefilaRequest';
 
 @Injectable()
 export class TefilosService {
-  activeTefilaRequests: TefilaRequest[] = [
-    new TefilaRequest('Today', 'Mo ben Shmo', 'Jane Eyre', 'Feeling bad', 1),
-    new TefilaRequest('Tomorrow', 'Go ben Shmo', 'Amelia Earhart', 'Feeling bad', 2),
-    new TefilaRequest('Yesterday', 'Lo ben Shmo', 'Amelia Earhart', 'Feeling bad', 2),
-    new TefilaRequest('Thursday', 'Ma bas Shma', 'Shprintza Feingoldbergerstein', 'Feeling bad', 5),
-    new TefilaRequest('Friday', 'La bas Shma', 'Shprintza Feingoldbergerstein', 'Feeling bad', 5)
-  ];
+  activeTefilaRequests: TefilaRequest[] = [];
   tefilosChanged = new Subject<TefilaRequest[]>();
-  constructor() { }
+  url = 'http://localhost:3000';
+  constructor(private httpClient: HttpClient) { }
 
   getActiveTefilaRequests() {
-    return this.activeTefilaRequests.slice();
+    this.httpClient.get<TefilaRequest[]>(`${this.url}/tefilos`).subscribe(
+      async (tefilos) => {
+        this.activeTefilaRequests = await tefilos;
+        this.onTefilosChanged(tefilos);
+      },
+      (error) => console.log(error)
+    );
   }
 
   addRequest(tefila: TefilaRequest) {
-    this.activeTefilaRequests.push(tefila);
-    this.onTefilosChanged();
+    this.httpClient.post(`${this.url}/tefilos/`, tefila).subscribe(
+      (success) => {
+        this.getActiveTefilaRequests();
+      },
+      (error) => console.log(error)
+    );
   }
 
-  cancelRequest(request: TefilaRequest) {
-    this.activeTefilaRequests.splice(this.activeTefilaRequests.findIndex(
-      (tefilaRequest) => tefilaRequest === request), 1);
-    this.onTefilosChanged();
+  cancelRequest(id: number) {
+    this.httpClient.delete(`${this.url}/tefilos/${id}`).subscribe(
+      async (success) => {
+        await this.getActiveTefilaRequests();
+      },
+      (error) => console.log(error)
+    );
   }
-  onTefilosChanged() {
-    this.tefilosChanged.next(this.activeTefilaRequests.slice());
+  onTefilosChanged(tefilaRequests: TefilaRequest[]) {
+    this.tefilosChanged.next(tefilaRequests);
   }
 }

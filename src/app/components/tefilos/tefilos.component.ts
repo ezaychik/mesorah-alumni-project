@@ -22,19 +22,14 @@ export class TefilosComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private alumnaService: AlumnaService, private tefilaService: TefilosService) { }
   ngOnInit() {
-    this.alumnaService.getAlumna(this.alumnaService.getIdOfActiveAlumna()).toPromise().then(
-      (alumna) => {
-        this.currentAlumna = alumna;
-        this.requestsForDisplay = this.tefilaService.getActiveTefilaRequests();
-        this.tefilosChangedSubscription = this.tefilaService.tefilosChanged.subscribe(
-          (tefilos: TefilaRequest[]) => {
-            this.showOnlyMyRequests ? this.requestsForDisplay = this.filterMyTefilaRequests(tefilos) : this.requestsForDisplay = tefilos;
-          }
-        );
-        this.isloaded = true;
-      },
-      (err) => console.log(err)
+    this.currentAlumna = this.alumnaService.getActiveAlumna();
+    this.tefilosChangedSubscription = this.tefilaService.tefilosChanged.subscribe(
+      (tefilos: TefilaRequest[]) => {
+        this.showOnlyMyRequests ? this.requestsForDisplay = this.filterMyTefilaRequests(tefilos) : this.requestsForDisplay = tefilos;
+      }
     );
+    this.tefilaService.getActiveTefilaRequests();
+    this.isloaded = true;
   }
   ngOnDestroy(): void {
     this.tefilosChangedSubscription.unsubscribe();
@@ -50,7 +45,7 @@ export class TefilosComponent implements OnInit, OnDestroy {
     }
   }
   onCancelRequest(request: TefilaRequest) {
-    this.tefilaService.cancelRequest(request);
+    this.tefilaService.cancelRequest(request.id);
   }
   onChangeTefilaRequestPreference(event: any) {
     this.alumnaService.updateTefilaRequestPreference(event.target.checked);

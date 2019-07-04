@@ -9,7 +9,7 @@
   <ul class="nav flex-column">
     <li *ngFor="let alumna of searchResults">
       <a routerLink="/profile/{{alumna.id}}" class="nav-link inline-block">
-        {{alumna.lastName}}, {{alumna.firstName}}
+        {{alumna.personal.lastNameAsStudent}}, {{alumna.personal.firstName}}
       </a>
     </li>
   </ul>
