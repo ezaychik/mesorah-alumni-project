@@ -38,7 +38,7 @@ export class TefilosService {
       (error) => console.log(error)
     );
   }
-  onTefilosChanged(tefilaRequests: TefilaRequest[]) {
+  private onTefilosChanged(tefilaRequests: TefilaRequest[]) {
     this.tefilosChanged.next(tefilaRequests);
   }
 }

@@ -48,7 +48,10 @@ export class TefilosComponent implements OnInit, OnDestroy {
     this.tefilaService.cancelRequest(request.id);
   }
   onChangeTefilaRequestPreference(event: any) {
-    this.alumnaService.updateTefilaRequestPreference(event.target.checked);
+    this.alumnaService.updateTefilaRequestPreference(event.target.checked).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
   }
   onAddRequest() {
     this.router.navigate(['broadcast'], {

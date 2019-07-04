@@ -29,7 +29,7 @@ export class AlumnaService {
     return this.httpClient.put(`${this.url}/alumni/${this.activeAlumna.id}`, updatedAluma);
   }
   updateTefilaRequestPreference(value: boolean) {
-    // call some API, with value, and id as param
-
+    this.activeAlumna.isSignedUpForTefilaRequests = value;
+    return this.updateAlumna(this.activeAlumna);
   }
 }
